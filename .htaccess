@@ -1,3 +1,2 @@
 RewriteEngine On
-
 Redirect permanent / https://twitter.com/2288256account
