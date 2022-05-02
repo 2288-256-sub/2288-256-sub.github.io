@@ -3,27 +3,39 @@ name: Domain Renewal
 on:
   push:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build:
-    runs-on: ubuntu-latest # 最新のubuntu環境で下記のジョブを実行
+    runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v2 # おまじない
-
-      - name: Setup python # ワークフローのセクションごとに設定する名前。特に設定する必要はないが、どこでエラーが起きているかを把握する為にも設定しておいた方が良い。
-        uses: actions/setup-python@v2 # Pythonのセットアップ
-        with:
-          python-version: "3.x" # Pythonのバージョン指定
-
-      - name: Install dependencies # Pythonの依存環境のインストール
-        run: | #このような書き方で複数行を一気に実行することができる。
-          python -m pip install --upgrade pip
-          pip install pandas
-          pip install pytz
-          pip install matplotlib
-          pip install numpy
-
-      - name: Run main.py # Pythonファイルの実行
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with: |
+          python-version: "3.9" 
+          architecture: "x64"
+      - name: pip setting
         run: |
-          python main.py
+          python -m pip install --upgrade pip
+          pip install datetime
+          pip install requests
+      - name: IPアドレス通知
+        id: check
+        run: |
+          echo "送信開始"
+          wget -O - http://${{ secrets.USER_NAME }}:${{ secrets.PASSWORD }}@www.mydns.jp/login.html
+          echo "送信終了"
+      - name: run python
+        if: steps.check.outcome == 'success'
+        working-directory: scripts　
+        run: |
+          python updateReadme.py　　
+          mv README.md ./../README.md　
+      - name: commit files
+        if: steps.check.outcome == 'success'
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git add README.md
+          git commit -m 'update README.md'
+          git push origin main　　
