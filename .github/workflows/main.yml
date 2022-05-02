@@ -1,8 +1,8 @@
-name: Domain Renewal # GitHub Actionsにつける名前。任意で良い。
+name: Domain Renewal
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/10 * * * *'
 
 jobs:
   build:
@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Domain Notification # Pythonファイルの実行
+      - name: Domain Notification 
         run: |
           wget -O - http://${{ secrets.USER_NAME }}:${{ secrets.PASSWORD }}@www.mydns.jp/login.html
