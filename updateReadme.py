@@ -4,7 +4,7 @@ import datetime
 t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
 now = datetime.datetime.now(JST)
-date = now.strftime('%Y/%m/%d %I:%M.%S(%p)')
+date = now.strftime('%Y/%m/%d %I:%M:%S(%p)')
 
 docs_str = textwrap.dedent('''
 [![Domain Renewal](https://github.com/2288-256-sub/2288-256-sub.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/2288-256-sub/2288-256-sub.github.io/actions/workflows/main.yml)
