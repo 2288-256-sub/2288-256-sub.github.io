@@ -32,6 +32,7 @@ jobs:
         if: steps.check.outcome == 'success'
         run: |
           python updateReadme.py
+          cd
           mv README.md ./../README.md　
       - name: Commit and Push # 実行した結果をプッシュして変更をレポジトリに反映
         if: steps.check.outcome == 'success'
