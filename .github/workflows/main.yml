@@ -33,6 +33,10 @@ jobs:
         run: |
           python updateReadme.py
           pwd
+          ls
+          echo "─────────────────────────────────"
+          echo README.md
+          echo "─────────────────────────────────"
           mv README.md ./../README.md　
       - name: Commit and Push # 実行した結果をプッシュして変更をレポジトリに反映
         if: steps.check.outcome == 'success'
