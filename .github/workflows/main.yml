@@ -38,6 +38,5 @@ jobs:
           git config user.name "2288-256-sub"
           git config user.email ${{ secrets.MAIL }}
           git pull
-          git add .
           git commit -m "update README.md"
           git push origin main
