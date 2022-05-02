@@ -39,5 +39,5 @@ jobs:
           git config user.email ${{ secrets.MAIL }}
           git add .
           git commit -m "update README.md"
-          git pull origin main --rebase
+          git pull origin main --no-rebase
           git push origin main
