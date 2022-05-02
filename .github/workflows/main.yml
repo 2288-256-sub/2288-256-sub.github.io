@@ -31,7 +31,7 @@ jobs:
       - name: run python
         if: steps.check.outcome == 'success'
         run: |
-          python updateReadme.py　　
+          python updateReadme.py
           mv README.md ./../README.md　
       - name: commit files
         if: steps.check.outcome == 'success'
