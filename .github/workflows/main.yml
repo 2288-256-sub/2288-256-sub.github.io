@@ -9,9 +9,17 @@ jobs:
   build:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkout@v2
-      - name: Domain Notification 
-        run: |
-          echo "送信終了"
-          notification.sh
-          echo "送信終了"
+      - uses: actions/checkout@v2 # おまじない
+
+      - name: Setup python # ワークフローのセクションごとに設定する名前。特に設定する必要はないが、どこでエラーが起きているかを把握する為にも設定しておいた方が良い。
+        uses: actions/setup-python@v2 # Pythonのセットアップ
+        with:
+          python-version: "3.x" # Pythonのバージョン指定
+
+      - name: Install dependencies # Pythonの依存環境のインストール
+        run: | #このような書き方で複数行を一気に実行することができる。
+          python -m pip install --upgrade pip
+          pip install pandas
+          pip install pytz
+          pip install matplotlib
+          pip install numpy
