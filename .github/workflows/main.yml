@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest # 最新のubuntu環境で下記のジョブを実行
     steps:
       - uses: actions/checkout@v2 # おまじない
 
@@ -23,3 +23,7 @@ jobs:
           pip install pytz
           pip install matplotlib
           pip install numpy
+
+      - name: Run main.py # Pythonファイルの実行
+        run: |
+          python main.py
