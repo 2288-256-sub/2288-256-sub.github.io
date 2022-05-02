@@ -39,7 +39,7 @@ jobs:
           git config user.email ${{ secrets.MAIL }}
           git pull
           git add .
-          git fetch origin master
-          git reset --hard origin/master
+          git fetch origin main
+          git reset --hard origin/main
           git commit -m "update README.md"
           git push origin main
