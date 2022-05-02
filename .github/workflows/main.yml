@@ -30,7 +30,6 @@ jobs:
           echo "送信終了"
       - name: run python
         if: steps.check.outcome == 'success'
-        working-directory: scripts　
         run: |
           python updateReadme.py　　
           mv README.md ./../README.md　
