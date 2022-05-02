@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v2
-      
       - name: Domain Notification 
         run: |
+          echo "送信終了"
           wget -O - http://${{ secrets.USER_NAME }}:${{ secrets.PASSWORD }}@www.mydns.jp/login.html
+          echo "送信終了"
