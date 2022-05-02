@@ -1,6 +1,7 @@
 name: Domain Renewal
 
 on:
+  push:
   schedule:
     - cron: '*/10 * * * *'
 
